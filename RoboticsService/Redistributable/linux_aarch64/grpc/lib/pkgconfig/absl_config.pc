@@ -1,0 +1,12 @@
+prefix=/media/bytedance/newSpace/grpcsrc/grpcbin
+exec_prefix=${prefix}
+libdir=/media/bytedance/newSpace/grpcsrc/grpcbin/lib
+includedir=/media/bytedance/newSpace/grpcsrc/grpcbin/include
+
+Name: absl_config
+Description: Abseil config library
+URL: https://abseil.io/
+Version: 20240116
+Requires:
+Libs: -L${libdir}  
+Cflags: -I${includedir} -DNOMINMAX
