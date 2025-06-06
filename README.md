@@ -1,7 +1,7 @@
-# RoboticsService Project Structure
+# XRoboToolkit-PC-Service
 
 ## Project Overview
-RoboticsService is an enterprise-level assistant application that includes multiple submodules and SDKs, developed using C++/Qt. The project aims to provide one-stop management and control services for VR teleoperated robots, including device management, data recording, demonstration, and control functionalities.
+XRoboToolkit-PC-Service is built upon an enterprise-level assistant application that includes multiple submodules and SDKs, developed using C++/Qt. The project aims to provide one-stop management and control services for VR teleoperated robots, including device management, data recording, demonstration, and control functionalities.
 
 ### Main Modules
 
@@ -293,8 +293,11 @@ JsonData valueJson = JsonMapper.ToObject(valueStr);
 
 **Pose**: A string representing seven float data for pose, separated by commas. The first three floats represent position (x, y, z), and the last four floats represent rotation (quaternion: x, y, z, w);
 
-**Coordinate System**: Left-handed coordinate system (X right, Y up, Z in), the origin is the Head position when the application starts. The following figure marks the position and orientation of the Head point.
+**Coordinate System**: Left-handed coordinate system (X right, Y up, Z in), the origin is set as the head position when the application starts. The following figure marks the position and orientation of the Head point. 
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/34239571-e9d5-4135-ac6b-c6d5014f44b8" width="50%" alt="head_pose">
+</div>
 
 #### 1. **Headset Pose:**
 
@@ -319,7 +322,7 @@ JsonData valueJson = JsonMapper.ToObject(valueStr);
 
 * left and right represent the left and right controllers respectively
 
-* pose: represents pose (left-handed, X right, Y up, Z in)
+* pose: controller pose (left-handed, X right, Y up, Z in), with the same orientation system as the head pose. 
 
 * Controller buttons
 
@@ -363,7 +366,9 @@ JsonData valueJson = JsonMapper.ToObject(valueStr);
 Below is the description of the 26 finger joints in the HandJointLocations array.
 
 
-The figure below is in Unity coordinate system (x right, y up, z forward), the actual data z-axis is in the opposite direction.
+The figure below shows finger joint locations in Unity coordinate system (x right, y up, z out). In the actual data, z-axis follows the z-in direction, same as controller pose and head pose.
+![finger_joints](https://github.com/user-attachments/assets/47f1e10d-9e78-4297-a110-a0254b100908)
+
 
 |     |                       |           |
 | --- | --------------------- | --------- |
@@ -406,7 +411,9 @@ Full-body motion capture requires additional Pico Swift devices (at least two) a
 **Human Joint Reference**
 
 The full-body motion capture function of the PICO SDK supports tracking the 24 human joints shown in the figure below.
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/36636b6d-4a13-4bd5-980d-299169fb36c9" width="50%" alt="body_joints">
+</div>
 
 The following are related concept descriptions:
 
