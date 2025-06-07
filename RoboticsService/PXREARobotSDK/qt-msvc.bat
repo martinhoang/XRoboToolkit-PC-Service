@@ -13,8 +13,8 @@ call "%VS_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 set BASE_DIR=%CD%
 set SOURCE_DIR=%BASE_DIR%
-set BUILD_DIR=%BASE_DIR%\..\build-RoboticsService-Desktop_Qt_6_6_3_MSVC2019_64bit-RelWithDebInfo
-set BUILD_TYPE=RelWithDebInfo
+set BUILD_DIR=%BASE_DIR%\..\..\build-RoboticsService-Desktop_Qt_6_6_3_MSVC2019_64bit-RelWithDebInfo\PXREARobotSDK
+set BUILD_TYPE=Release
 
 REM Create build directory if it doesn't exist
 if not exist "%BUILD_DIR%" mkdir "%BUILD_DIR%"
@@ -28,7 +28,7 @@ if not exist "%BUILD_DIR%\.qtc\package-manager\auto-setup.cmake" (
 )
 
 echo.
-echo ===== Configuring CMake for RoboticsService =====
+echo ===== Configuring CMake for PXREARobotSDK =====
 echo.
 
 REM Add Ninja to PATH
@@ -44,7 +44,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo.
-echo ===== Building RoboticsService =====
+echo ===== Building PXREARobotSDK =====
 echo.
 
 REM Build the project
