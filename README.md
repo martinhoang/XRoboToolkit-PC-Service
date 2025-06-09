@@ -126,6 +126,8 @@ XRoboToolkit-PC-Service is built upon an enterprise-level assistant application 
 
 The project provides build scripts for different platforms to simplify the build process:
 
+**Note**: QT 6.6.3 is required for for this project. Please modify the QT path variables in the build scripts to your own QT installation location.
+
 #### Windows Platform Build
 - `RoboticsService\qt-msvc.bat`
   - Update the following accordingly before building
