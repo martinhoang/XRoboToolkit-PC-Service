@@ -128,9 +128,44 @@ The project provides build scripts for different platforms to simplify the build
 
 #### Windows Platform Build
 - `RoboticsService\qt-msvc.bat`
-  - Used for building the project with MSVC compiler on Windows platform
-  - Automatically sets up Qt and Visual Studio environment variables
-  - Uses Ninja as the build system
+  - Update the following accordingly before building
+	```
+	set QT_DIR=C:\Qt\6.6.3\msvc2019_64
+	set QT_TOOLS_DIR=C:\Qt\Tools\CMake_64\bin
+	set NINJA_PATH=C:\Qt\Tools\Ninja
+	set MSVC_DIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64
+	set VS_DIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+	```
+	
+    <details>
+    <summary>Qt 6.6.x Installation Guidance</summary>
+
+    - Install [Qt Online Installer](https://doc.qt.io/qt-6/qt-online-installation.html)
+    - Select Custom Installation
+    - Select 
+        - Qt 6.6.x
+            - MSVC 2019 64-bit
+            - Qt Quick 3D
+			- Qt 5 Compatibility Module
+            - Qt Shader Tools
+            - Additional Libraries
+                - Qt 3D
+                - Qt Charts
+                - Qt Graphs (TP)
+                - Qt Multimedia
+                - Qt Positioning
+                - Qt Quick 3D Physics
+                - Qt Quick Effect Maker
+                - Qt WebChannel
+                - Qt WebEngine
+                - Qt WebSockets
+                - Qt WebView
+            - Qt Quick TimeLine
+        - Build Tools
+            - CMake
+            - Ninja
+    - Install
+    </details>
 
 #### Linux x86_64 Platform Build
 - `RoboticsService\qt-gcc.sh`
