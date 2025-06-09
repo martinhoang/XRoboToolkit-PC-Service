@@ -25,6 +25,10 @@ if [ "$OVERSEAS_FLAG" = true ]; then
 fi
 
 echo "set qt gcc compile env parameter for ARM64 architecture..."
+################################################################################
+################################################################################
+# Set the path to your Qt installation for ARM64 architecture
+
 QT_GCC_ARM64=/media/bytedance/newSpace/Qt6
 export QT6_TOOLS=/media/bytedance/newSpace/Qt/Tools
 
@@ -32,6 +36,8 @@ export PATH=/media/bytedance/newSpace/Qt6/bin:$PATH
 export PATH=/media/bytedance/newSpace/Qt6/include:$PATH
 export PATH=/media/bytedance/newSpace/Qt/Tools/QtCreator/bin:$PATH
 export PATH=/media/bytedance/newSpace/Qt/Tools/CMake/bin:$PATH
+################################################################################
+################################################################################
 
 echo "set qt gcc compile env parameter finished."
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)

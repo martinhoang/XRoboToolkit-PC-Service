@@ -7,6 +7,9 @@ fi
 echo $BUILD_NUM
 
 echo "set qt gcc compile env parameter..."
+################################################################################
+################################################################################
+# Set the path to your Qt installation for GCC 64-bit architecture
 QT_GCC_64=/home/pico/Qt6/6.6.3/gcc_64/
 export QT6_TOOLS=/home/pico/Qt6/Tools
 
@@ -14,6 +17,8 @@ export PATH=/home/pico/Qt6/6.6.3/gcc_64/bin:$PATH
 export PATH=/home/pico/Qt6/6.6.3/gcc_64/include:$PATH
 export PATH=/home/pico/Qt6/Tools/QtCreator/bin:$PATH
 export PATH=/home/pico/Qt6/Tools/CMake/bin:$PATH
+#################################################################################
+################################################################################
 
 echo "set qt gcc compile env parameter finished."
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)

@@ -172,12 +172,30 @@ The project provides build scripts for different platforms to simplify the build
 #### Linux x86_64 Platform Build
 - `RoboticsService\qt-gcc.sh`
   - Used for building the project with GCC compiler on Linux x86_64 platform
-  - Automatically sets up Qt environment variables
+  - modify the following lines to your QT installation path
+  ```bash
+  QT_GCC_64=/home/pico/Qt6/6.6.3/gcc_64/
+  export QT6_TOOLS=/home/pico/Qt6/Tools
+
+  export PATH=/home/pico/Qt6/6.6.3/gcc_64/bin:$PATH
+  export PATH=/home/pico/Qt6/6.6.3/gcc_64/include:$PATH
+  export PATH=/home/pico/Qt6/Tools/QtCreator/bin:$PATH
+  export PATH=/home/pico/Qt6/Tools/CMake/bin:$PATH
+  ```
 
 #### Linux ARM64 Platform Build
 - `RoboticsService\qt-gcc_aarch64.sh`
   - Used for building the project with GCC compiler on Linux ARM64 (aarch64) platform
-  - Automatically sets up Qt environment variables
+  - modify the following lines to your QT installation path
+  ```bash
+  QT_GCC_ARM64=/media/bytedance/newSpace/Qt6
+  export QT6_TOOLS=/media/bytedance/newSpace/Qt/Tools
+
+  export PATH=/media/bytedance/newSpace/Qt6/bin:$PATH
+  export PATH=/media/bytedance/newSpace/Qt6/include:$PATH
+  export PATH=/media/bytedance/newSpace/Qt/Tools/QtCreator/bin:$PATH
+  export PATH=/media/bytedance/newSpace/Qt/Tools/CMake/bin:$PATH
+  ```
 
 ### Packaging Process
 
