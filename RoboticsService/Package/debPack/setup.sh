@@ -101,7 +101,7 @@ chmod +x $DIR/package/opt/apps/roboticsservice/SDKDemo/RobotUnityDemo/RobotLinux
 # 构建 Debian 包
 echo "Building Debian package..."
 VERSION=$(grep "Version:" $DIR/control | cut -d " " -f 2)
-PACKAGE_NAME="roboticsservice_${VERSION}_amd64.deb"
+PACKAGE_NAME="XRoboToolkit-PC-Service_${VERSION}_amd64.deb"
 
 cd $DIR
 dpkg-deb -b package/ ./$PACKAGE_NAME

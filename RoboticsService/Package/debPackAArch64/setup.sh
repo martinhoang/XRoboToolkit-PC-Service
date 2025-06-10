@@ -100,7 +100,7 @@ echo "二进制文件已复制。"
 # 构建 Debian 包
 echo "构建 Debian 包..."
 VERSION=$(grep "Version:" $DIR/control | cut -d " " -f 2)
-PACKAGE_NAME="roboticsservice_${VERSION}_arm64.deb"
+PACKAGE_NAME="XRoboToolkit-PC-Service_${VERSION}_arm64.deb"
 
 cd $DIR
 dpkg-deb -b package_arm64/ ./$PACKAGE_NAME
