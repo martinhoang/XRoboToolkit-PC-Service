@@ -67,7 +67,7 @@ if [ ! -d "$DIR/package_arm64/usr/share/icons/hicolor" ] || [ "$DIR/hicolor" -nt
 fi
 
 # 检查脚本文件是否已复制或有更新
-for script in run2D.sh runRobotDataRecorder.sh runService.sh; do
+for script in run2D.sh runRobotDataRecorder.sh runService.sh RobotDemoQt RobotDataRecorder; do
     if [ ! -f "$DIR/package_arm64/opt/apps/roboticsservice/$script" ] || [ "$DIR/$script" -nt "$DIR/package_arm64/opt/apps/roboticsservice/$script" ]; then
         echo "复制/更新 $script..."
         cp $DIR/$script $DIR/package_arm64/opt/apps/roboticsservice/

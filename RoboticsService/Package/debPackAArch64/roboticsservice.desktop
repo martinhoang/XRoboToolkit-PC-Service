@@ -1,11 +1,8 @@
 [Desktop Entry]
-Version=1.0.0.0
+Version=1.0.0
 Type=Application
-Name=PICORobotAssistantDemo
-Name[zh_CN]=PICO机器人助手Demo
-GenericName=PICORobotAssistantDemo
-GenericName[zh_CN]=PICO机器人助手Demo
-Comment=Pico Immersive Pte. Ltd.
+Name=XRoboToolkit-PC-Service
+GenericName=XRoboToolkit-PC-Service
 Exec=/opt/apps/roboticsservice/runService.sh
 Icon=roboticsservice
 Terminal=false

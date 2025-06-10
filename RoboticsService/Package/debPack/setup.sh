@@ -66,7 +66,7 @@ if [ ! -d "$DIR/package/usr/share/icons/hicolor" ] || [ "$DIR/hicolor" -nt "$DIR
 fi
 
 # 检查脚本文件是否已复制或有更新
-for script in run2D.sh runRobotDataRecorder.sh run3D.sh runService.sh; do
+for script in run2D.sh runRobotDataRecorder.sh run3D.sh runService.sh RobotDemoQt RobotDataRecorder; do
     if [ ! -f "$DIR/package/opt/apps/roboticsservice/$script" ] || [ "$DIR/$script" -nt "$DIR/package/opt/apps/roboticsservice/$script" ]; then
         echo "Copying/updating $script..."
         cp $DIR/$script $DIR/package/opt/apps/roboticsservice/
@@ -95,6 +95,8 @@ else
     echo "WARNING: Main executable RoboticsServiceProcess not found in $BIN_DIR!"
 fi
 echo "Binary files copied."
+
+chmod +x $DIR/package/opt/apps/roboticsservice/SDKDemo/RobotUnityDemo/RobotLinuxDemo.x86_64
 
 # 构建 Debian 包
 echo "Building Debian package..."
