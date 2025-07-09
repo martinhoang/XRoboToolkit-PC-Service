@@ -348,7 +348,7 @@ JsonData valueJson = JsonMapper.ToObject(valueStr);
 
 **Pose**: A string representing seven float data for pose, separated by commas. The first three floats represent position (x, y, z), and the last four floats represent rotation (quaternion: x, y, z, w);
 
-**Coordinate System**: Left-handed coordinate system (X right, Y up, Z in), the origin is set as the head position when the application starts. The following figure marks the position and orientation of the Head point. 
+**Coordinate System**: Right-handed coordinate system (X right, Y up, Z in), the origin is set as the head position when the application starts. The following figure marks the position and orientation of the Head point. 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/34239571-e9d5-4135-ac6b-c6d5014f44b8" width="50%" alt="head_pose">
@@ -364,7 +364,7 @@ JsonData valueJson = JsonMapper.ToObject(valueStr);
 
 | key         | type      | description                   |
 | ----------- | ------- | -------------------- |
-| pose        | seven float | Pose (left-handed, X right, Y up, Z in)    |
+| pose        | seven float | Pose (right-handed, X right, Y up, Z in)    |
 | status      | int     | Indicates confidence (0 not reliable, 1 reliable)      |
 | handMode    | Current hand gesture type | 0 not enabled, 1 controller enabled, 2 hand gesture tracking enabled |
 | timeStampNs | int64   | Unix timestamp (nanoseconds)          |
