@@ -187,14 +187,13 @@ The project provides build scripts for different platforms to simplify the build
 - `RoboticsService\qt-gcc_aarch64.sh`
   - Used for building the project with GCC compiler on Linux ARM64 (aarch64) platform
   - modify the following lines to your QT installation path
-  ```bash
-  QT_GCC_ARM64=/media/bytedance/newSpace/Qt6
-  export QT6_TOOLS=/media/bytedance/newSpace/Qt/Tools
-
-  export PATH=/media/bytedance/newSpace/Qt6/bin:$PATH
-  export PATH=/media/bytedance/newSpace/Qt6/include:$PATH
-  export PATH=/media/bytedance/newSpace/Qt/Tools/QtCreator/bin:$PATH
-  export PATH=/media/bytedance/newSpace/Qt/Tools/CMake/bin:$PATH
+  ```
+  QT_GCC_ARM64=/home/orin_pico/Qt/6.7.3/gcc_arm64
+  export QT6_TOOLS=/home/orin_pico/Qt/Tools
+  export PATH=/home/orin_pico/Qt/6.7.3/gcc_arm64/bin:$PATH
+  export PATH=/home/orin_pico/Qt/6.7.3/gcc_arm64/include:$PATH
+  export PATH=/home/orin_pico/Qt/Tools/QtCreator/bin:$PATH
+  export PATH=/home/orin_pico/Qt/Tools/CMake/bin:$PATH
   ```
 
 ### Packaging Process
