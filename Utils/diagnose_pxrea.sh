@@ -63,7 +63,7 @@ echo ""
 # PROCESS INFORMATION
 # ============================================================================
 echo "--- Service Process Information ---"
-if pgrep -x "RoboticsServiceProcess" > /dev/null; then
+if pgrep -f "RoboticsServiceProcess" > /dev/null; then
     PID=$(pgrep -x RoboticsServiceProcess)
     echo "Status: RUNNING (PID: $PID)"
     echo ""

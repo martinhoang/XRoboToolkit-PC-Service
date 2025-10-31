@@ -59,7 +59,7 @@ echo ""
 # ============================================================================
 print_header "1. Service Status"
 
-if pgrep -x "RoboticsServiceProcess" > /dev/null; then
+if pgrep -f "RoboticsServiceProcess" > /dev/null; then
     PID=$(pgrep -x RoboticsServiceProcess)
     UPTIME=$(ps -p $PID -o etime= 2>/dev/null || echo "unknown")
     print_success "RoboticsServiceProcess is RUNNING"
