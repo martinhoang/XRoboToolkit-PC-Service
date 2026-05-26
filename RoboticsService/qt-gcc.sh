@@ -9,14 +9,17 @@ echo $BUILD_NUM
 echo "set qt gcc compile env parameter..."
 ################################################################################
 ################################################################################
-# Set the path to your Qt installation for GCC 64-bit architecture
-QT_GCC_64=/home/pico/Qt6/6.6.3/gcc_64/
-export QT6_TOOLS=/home/pico/Qt6/Tools
+# Set the path to your Qt installation for GCC 64-bit architecture.
+# Override QT_BASE_DIR or QT_VERSION before calling this script, e.g.:
+#   QT_BASE_DIR=/opt/Qt6 QT_VERSION=6.6.3 ./qt-gcc.sh
+# Defaults to ~/Qt6/6.6.3 (standard aqtinstall location).
+QT_BASE_DIR=${QT_BASE_DIR:-$HOME/Qt6}
+QT_VERSION=${QT_VERSION:-6.6.3}
+QT_GCC_64=$QT_BASE_DIR/$QT_VERSION/gcc_64/
+export QT6_TOOLS=$QT_BASE_DIR/Tools
 
-export PATH=/home/pico/Qt6/6.6.3/gcc_64/bin:$PATH
-export PATH=/home/pico/Qt6/6.6.3/gcc_64/include:$PATH
-export PATH=/home/pico/Qt6/Tools/QtCreator/bin:$PATH
-export PATH=/home/pico/Qt6/Tools/CMake/bin:$PATH
+export PATH=$QT_GCC_64/bin:$PATH
+export PATH=$QT_GCC_64/include:$PATH
 #################################################################################
 ################################################################################
 

@@ -187,31 +187,62 @@ if(UNIX)
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.6" "${INSTALL_DIR}/lib"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.6.6.2" "${INSTALL_DIR}/lib"
-
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.6" "${INSTALL_DIR}/lib"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.6.6.2" "${INSTALL_DIR}/lib"
-
-
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.6" "${INSTALL_DIR}/lib"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.6.6.2" "${INSTALL_DIR}/lib"
-
-
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.6" "${INSTALL_DIR}/lib"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.6.6.2" "${INSTALL_DIR}/lib"
-
-
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.6" "${INSTALL_DIR}/lib"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.6.6.2" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
+                          # Qt6 Gui + OpenGL (required by Qt Quick)
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                          # Qt6 Qml + Quick (required by RobotDemoQt / RobotDataRecorder)
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                          # Qt6 Multimedia (for 'import QtMultimedia' in QML)
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/translations"
                           COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/translations" "${INSTALL_DIR}/translations"
@@ -219,17 +250,21 @@ if(UNIX)
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins"
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/generic"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/plugins/generic/libqtuiotouchplugin.so" "${INSTALL_DIR}/plugins/generic"
-
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/networkinformation"
                           COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/networkinformation" "${INSTALL_DIR}/plugins/networkinformation"
-                          COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/platforminputcontexts"
-                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/plugins/platforminputcontexts/libqtvirtualkeyboardplugin.so" "${INSTALL_DIR}/plugins/platforminputcontexts"
+                          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/platforminputcontexts" "${INSTALL_DIR}/plugins/platforminputcontexts"
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/platforms"
                           COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/platforms" "${INSTALL_DIR}/plugins/platforms"
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/sqldrivers"
                           COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/sqldrivers" "${INSTALL_DIR}/plugins/sqldrivers"
                           COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/tls"
                           COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/tls" "${INSTALL_DIR}/plugins/tls"
+                          COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/imageformats"
+                          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/imageformats" "${INSTALL_DIR}/plugins/imageformats"
+                          COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/qmltooling"
+                          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/qmltooling" "${INSTALL_DIR}/plugins/qmltooling"
+                          COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/multimedia"
+                          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/multimedia" "${INSTALL_DIR}/plugins/multimedia"
 
                       )
                  endif()
@@ -413,7 +448,7 @@ if(UNIX)
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.6.6.3" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libicui18n.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libicui18n.so.56" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libicui18n.so.56.1" "${INSTALL_DIR}/lib"
@@ -424,31 +459,70 @@ if(UNIX)
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libicudata.so.56" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libicudata.so.56.1" "${INSTALL_DIR}/lib"
 
-
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.6.6.3" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Core5Compat.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.6.6.3" "${INSTALL_DIR}/lib"
-
-
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6DBus.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.6.6.3" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Network.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.6.6.3" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Sql.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Xml.so" "${INSTALL_DIR}/lib"
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Xml.so.6" "${INSTALL_DIR}/lib"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Xml.so.6.6.3" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Xml.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
 
-                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/qml/QtCore"
+                      # Qt6 Gui + OpenGL (required by Qt Quick)
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Gui.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                      # Qt6 Qml + Quick (required by RobotDemoQt / RobotDataRecorder)
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Qml.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlModels.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QmlWorkerScript.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Quick.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickControls2.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6QuickTemplates2.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                      # Qt6 Multimedia (for 'import QtMultimedia' in QML)
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6Multimedia.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so.6" "${INSTALL_DIR}/lib"
+                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6MultimediaQuick.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                      # QML module directories
+                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/qml"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/qml/QtCore" "${INSTALL_DIR}/qml/QtCore"
-
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/qml/QtQml" "${INSTALL_DIR}/qml/QtQml"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/qml/QtQuick" "${INSTALL_DIR}/qml/QtQuick"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/qml/QtMultimedia" "${INSTALL_DIR}/qml/QtMultimedia"
 
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/translations"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/translations" "${INSTALL_DIR}/translations"
@@ -458,20 +532,21 @@ if(UNIX)
                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/plugins/generic/libqtuiotouchplugin.so" "${INSTALL_DIR}/plugins/generic"
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/networkinformation"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/networkinformation" "${INSTALL_DIR}/plugins/networkinformation"
-                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/platforminputcontexts"
-                      COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/plugins/platforminputcontexts/libqtvirtualkeyboardplugin.so" "${INSTALL_DIR}/plugins/platforminputcontexts"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/platforminputcontexts" "${INSTALL_DIR}/plugins/platforminputcontexts"
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/platforms"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/platforms" "${INSTALL_DIR}/plugins/platforms"
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/sqldrivers"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/sqldrivers" "${INSTALL_DIR}/plugins/sqldrivers"
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/tls"
                       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/tls" "${INSTALL_DIR}/plugins/tls"
-
-
+                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/imageformats"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/imageformats" "${INSTALL_DIR}/plugins/imageformats"
+                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/qmltooling"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/qmltooling" "${INSTALL_DIR}/plugins/qmltooling"
+                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/plugins/multimedia"
+                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/plugins/multimedia" "${INSTALL_DIR}/plugins/multimedia"
 
                       COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/libexec"
-                      COMMAND ${CMAKE_COMMAND} -E make_directory "${INSTALL_DIR}/resources"
-                      COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_PREFIX_PATH}/resources" "${INSTALL_DIR}/resources"
                   )
              endif()
 endif()
