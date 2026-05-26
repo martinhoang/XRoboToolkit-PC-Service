@@ -176,7 +176,7 @@ echo ""
 echo -e "${BLUE}Step 5: Cleaning up existing processes...${NC}"
 echo ""
 
-if pgrep -x "RoboticsServiceProcess" > /dev/null; then
+if pgrep -f "RoboticsServiceProcess" > /dev/null; then
     echo -e "${YELLOW}⚠ Existing RoboticsServiceProcess found, stopping...${NC}"
     pkill -9 RoboticsServiceProcess
     sleep 2
@@ -217,7 +217,7 @@ echo ""
 echo -e "${BLUE}Step 7: Verifying Setup...${NC}"
 echo ""
 
-if ! pgrep -x "RoboticsServiceProcess" > /dev/null; then
+if ! pgrep -f "RoboticsServiceProcess" > /dev/null; then
     echo -e "${RED}✗ Service failed to start${NC}"
     echo "Check the log: tail -f $SERVICE_PATH/roboticsservice.log"
     exit 1
