@@ -2,6 +2,26 @@
 Troubleshooting
 ===
 
+## Quick Start — Use `setup.sh`
+
+Instead of manually diagnosing issues, run the bundled setup script which checks all prerequisites, auto-fixes what it can, and then launches the service:
+
+```bash
+cd /opt/apps/roboticsservice
+
+# Non-sudo mode: checks and auto-fixes anything writable by your user
+./setup.sh
+
+# Sudo mode: additionally installs apt packages and opens firewall ports
+./setup.sh y
+```
+
+The script covers: Qt bundled libs, XCB platform plugin, `libxcb-cursor0`, QML modules, display/DISPLAY, NVIDIA PRIME setup, binary deps, `setting.ini`, and UFW firewall ports.
+
+Only refer to the sections below if `setup.sh` reports specific errors you need to fix manually.
+
+---
+
 ### Segfault / Crash when running `run2D.sh` or `run3D.sh` on Ubuntu 22.04
 
 #### Issue: `RobotDemoQt` or `RobotLinuxDemo.x86_64` segfaults immediately at launch
@@ -38,9 +58,38 @@ The binary was compiled against **Qt 6.6.3** but Ubuntu 22.04 ships **Qt 6.2.4**
 
 ---
 
+#### Still crashing after the deb fix? Missing `libQt6XcbQpa`
+
+The previous deb fix added the Qt Quick/QML/Multimedia libs but missed **`libQt6XcbQpa`** — the Qt XCB QPA support library that `plugins/platforms/libqxcb.so` depends on. Without it, the XCB platform plugin falls through to the system Qt 6.2.4 version and crashes.
+
+**Diagnosis** — run this to confirm:
+```bash
+LD_LIBRARY_PATH=/opt/apps/roboticsservice:/opt/apps/roboticsservice/lib:/opt/apps/roboticsservice/SDK/x64 \
+  ldd /opt/apps/roboticsservice/plugins/platforms/libqxcb.so | grep Qt6
+# PROBLEM: libQt6XcbQpa.so.6 => /lib/x86_64-linux-gnu/...  (system, not bundled)
+# FIXED:   libQt6XcbQpa.so.6 => /opt/apps/roboticsservice/lib/...
+```
+
+**Quick fix** (no rebuild needed — requires Qt 6.6.3 at `~/Qt6`):
+```bash
+sudo cp -P ~/Qt6/6.6.3/gcc_64/lib/libQt6XcbQpa.so* /opt/apps/roboticsservice/lib/
+```
+
+The `CMakeLists.txt` in this repo has been updated to include `libQt6XcbQpa` for future builds.
+
+**Verify the fix:**
+```bash
+LD_LIBRARY_PATH=/opt/apps/roboticsservice:/opt/apps/roboticsservice/lib:/opt/apps/roboticsservice/SDK/x64 \
+  ldd /opt/apps/roboticsservice/plugins/platforms/libqxcb.so | grep -E "Qt6.*system|not found"
+# Should print nothing
+./run2D.sh   # should launch without crash
+```
+
+---
+
 #### Fix: Install the Updated Deb Package (Recommended)
 
-The `CMakeLists.txt` has been fixed to bundle all required Qt libs. **Build and install the updated deb** from source:
+The `CMakeLists.txt` has been fixed to bundle all required Qt libs (including `libQt6XcbQpa`). **Build and install the updated deb** from source:
 
 **Step 1 — Install Qt 6.6.3 via aqtinstall** (if not already present):
 ```bash

@@ -212,6 +212,13 @@ if(UNIX)
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.6" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6OpenGL.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
+
+                          # libQt6XcbQpa is required by the XCB platform plugin (libqxcb.so).
+                          # Without it the plugin falls back to the system Qt 6.2.4 version and
+                          # crashes with "Qt_6.6 not found" / "could not load xcb platform plugin".
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6XcbQpa.so" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6XcbQpa.so.6" "${INSTALL_DIR}/lib"
+                          COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6XcbQpa.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.6" "${INSTALL_DIR}/lib"
                           COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_PREFIX_PATH}/lib/libQt6ShaderTools.so.${Qt6Core_VERSION}" "${INSTALL_DIR}/lib"

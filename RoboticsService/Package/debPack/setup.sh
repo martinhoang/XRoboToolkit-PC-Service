@@ -76,6 +76,15 @@ for script in run2D.sh runRobotDataRecorder.sh run3D.sh runService.sh RobotDemoQ
     fi
 done
 
+# User-facing master setup & launch script (source: repo root setup.sh)
+SOURCE_SETUP="$DIR/../../../setup.sh"
+if [ ! -f "$DIR/package/opt/apps/roboticsservice/setup.sh" ] || [ "$SOURCE_SETUP" -nt "$DIR/package/opt/apps/roboticsservice/setup.sh" ]; then
+    echo "Copying/updating setup.sh..."
+    cp "$SOURCE_SETUP" $DIR/package/opt/apps/roboticsservice/setup.sh
+    chmod +x $DIR/package/opt/apps/roboticsservice/setup.sh
+    echo "setup.sh copied/updated."
+fi
+
 # 检查二进制文件是否需要更新
 BIN_DIR="$DIR/../../bin"
 TARGET_DIR="$DIR/package/opt/apps/roboticsservice"
