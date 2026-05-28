@@ -2,7 +2,186 @@
 Troubleshooting
 ===
 
-### Connection Issues on Ubuntu/Linux
+### Segfault / Crash when running `run2D.sh` or `run3D.sh` on Ubuntu 22.04
+
+#### Issue: `RobotDemoQt` or `RobotLinuxDemo.x86_64` segfaults immediately at launch
+
+**Symptoms:**
+- Running `./run2D.sh` or `./run3D.sh` results in an immediate segfault
+- Error message such as:
+  ```
+  /opt/apps/roboticsservice/RobotDemoQt: /lib/x86_64-linux-gnu/libQt6Core.so.6: version 'Qt_6.6' not found
+  ```
+  or a silent crash with no output
+- `RoboticsServiceProcess` (the background service) may start fine, but the Qt GUI frontend crashes
+
+**Root Cause:**
+
+The binary was compiled against **Qt 6.6.3** but Ubuntu 22.04 ships **Qt 6.2.4** as the system library. There are two compounding problems in older builds of the deb package:
+
+1. **Qt version mismatch**: Running the binary without the correct `LD_LIBRARY_PATH` causes the system linker to pick up system Qt 6.2.4 (`/lib/x86_64-linux-gnu/libQt6Core.so.6`) instead of the bundled Qt 6.6.3 in `/opt/apps/roboticsservice/lib/`. The binary then fails at startup because it requires the `Qt_6.6` symbol version.
+
+2. **Missing Qt Quick/Qml libs**: The older deb package's `lib/` directory only included core Qt libs (`libQt6Core`, `libQt6Network`, `libQt6DBus`, etc.) but was **missing** the Qt Quick/QML libraries that `RobotDemoQt` requires:
+   - `libQt6Qml.so.6`
+   - `libQt6QmlModels.so.6`
+   - `libQt6QmlWorkerScript.so.6`
+   - `libQt6Quick.so.6`
+   - `libQt6QuickControls2.so.6`
+   - `libQt6QuickTemplates2.so.6`
+   - `libQt6Gui.so.6`
+   - `libQt6OpenGL.so.6`
+   - `libQt6ShaderTools.so.6`
+   - `libQt6Multimedia.so.6`
+   - `libQt6MultimediaQuick.so.6`
+   
+   Even with the correct `LD_LIBRARY_PATH`, these fall back to system Qt 6.2.4 (or are not found at all), causing a version mismatch segfault.
+
+---
+
+#### Fix: Install the Updated Deb Package (Recommended)
+
+The `CMakeLists.txt` has been fixed to bundle all required Qt libs. **Build and install the updated deb** from source:
+
+**Step 1 — Install Qt 6.6.3 via aqtinstall** (if not already present):
+```bash
+pip install aqtinstall
+aqt install-qt linux desktop 6.6.3 gcc_64 \
+  -m qtmultimedia qtshadertools qt5compat \
+  --outputdir ~/Qt6
+```
+
+**Step 2 — Build the package:**
+```bash
+cd /path/to/XRoboToolkit-PC-Service/RoboticsService
+# Edit qt-gcc.sh and ensure QT_DIR points to your Qt install, e.g.:
+#   QT_DIR=/home/$USER/Qt6/6.6.3/gcc_64
+./qt-gcc.sh 1
+```
+> **Note:** Do not pass `--clean` as an argument to `qt-gcc.sh` — it breaks the build number parsing. Instead, manually remove the build directory and run `./qt-gcc.sh 1` with just the build number.
+
+**Step 3 — Package into a deb:**
+```bash
+cd Package/debPack
+chmod +x setup.sh
+./setup.sh
+# Output: Package/output/XRoboToolkit-PC-Service_1.0.0.0_amd64.deb
+```
+
+**Step 4 — Install:**
+```bash
+sudo dpkg -i Package/output/XRoboToolkit-PC-Service_1.0.0.0_amd64.deb
+# Fix any dependency issues if needed:
+sudo apt-get install -f
+```
+
+**Step 5 — Verify:**
+```bash
+LD_LIBRARY_PATH=/opt/apps/roboticsservice:/opt/apps/roboticsservice/lib:/opt/apps/roboticsservice/SDK/x64 \
+  ldd /opt/apps/roboticsservice/RobotDemoQt | grep "not found"
+# Should print nothing (all libs resolved)
+```
+
+---
+
+#### Quick Fix: Manually copy missing Qt libs (without rebuilding)
+
+If you have Qt 6.6.x installed via aqtinstall at `~/Qt6/6.6.3/gcc_64/`, you can copy the missing libs directly:
+
+```bash
+QT_LIB=~/Qt6/6.6.3/gcc_64/lib
+INSTALL_LIB=/opt/apps/roboticsservice/lib
+
+# Copy missing Qt Quick/Qml/Multimedia libs
+sudo cp -P \
+  $QT_LIB/libQt6Gui.so* \
+  $QT_LIB/libQt6OpenGL.so* \
+  $QT_LIB/libQt6ShaderTools.so* \
+  $QT_LIB/libQt6Qml.so* \
+  $QT_LIB/libQt6QmlModels.so* \
+  $QT_LIB/libQt6QmlWorkerScript.so* \
+  $QT_LIB/libQt6QmlCompiler.so* \
+  $QT_LIB/libQt6QmlCore.so* \
+  $QT_LIB/libQt6Quick.so* \
+  $QT_LIB/libQt6QuickControls2.so* \
+  $QT_LIB/libQt6QuickTemplates2.so* \
+  $QT_LIB/libQt6Multimedia.so* \
+  $QT_LIB/libQt6MultimediaQuick.so* \
+  $INSTALL_LIB/
+
+# Copy required QML modules
+QT_QML=~/Qt6/6.6.3/gcc_64/qml
+INSTALL_QML=/opt/apps/roboticsservice/qml
+sudo cp -rP $QT_QML/QtQml $INSTALL_QML/
+sudo cp -rP $QT_QML/QtQuick $INSTALL_QML/
+sudo cp -rP $QT_QML/QtMultimedia $INSTALL_QML/
+
+# Copy required plugins
+QT_PLUGINS=~/Qt6/6.6.3/gcc_64/plugins
+INSTALL_PLUGINS=/opt/apps/roboticsservice/plugins
+sudo cp -rP $QT_PLUGINS/imageformats $INSTALL_PLUGINS/
+sudo cp -rP $QT_PLUGINS/multimedia   $INSTALL_PLUGINS/
+```
+
+Then verify:
+```bash
+LD_LIBRARY_PATH=/opt/apps/roboticsservice:/opt/apps/roboticsservice/lib:/opt/apps/roboticsservice/SDK/x64 \
+  ldd /opt/apps/roboticsservice/RobotDemoQt | grep "not found"
+```
+
+---
+
+#### Why `run2D.sh` / `run3D.sh` must always be used (never run binaries directly)
+
+The scripts set three critical environment variables before launching any binary:
+
+```bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DIR:$DIR/lib:$DIR/SDK/x64
+export QT_PLUGIN_PATH=$DIR/plugins/
+export QT_QML_PATH=$DIR/qml/
+```
+
+| Variable | Purpose |
+|----------|---------|
+| `LD_LIBRARY_PATH` | Points the dynamic linker at the bundled Qt 6.6.3 libs **before** system Qt 6.2.4 |
+| `QT_PLUGIN_PATH` | Tells Qt where to find platform, image, multimedia, and input plugins |
+| `QT_QML_PATH` | Tells the QML engine where to find QML module files (`.qmltypes`, `.so`) |
+
+**Running `./RobotDemoQt` directly** (without the script) means none of these are set, so:
+- The system linker picks up `/lib/x86_64-linux-gnu/libQt6Core.so.6` (Qt 6.2.4) first
+- The binary requires `Qt_6.6` symbol version → immediate crash
+
+**Always launch via the scripts:**
+```bash
+cd /opt/apps/roboticsservice
+./run2D.sh    # runs RoboticsServiceProcess + RobotDemoQt (2D Qt GUI frontend)
+./run3D.sh    # runs RoboticsServiceProcess + RobotLinuxDemo.x86_64 (Unity 3D frontend)
+./runService.sh  # runs RoboticsServiceProcess only (headless, for SDK use)
+```
+
+---
+
+#### Diagnosing library issues
+
+```bash
+# Check which Qt version the binary requires
+objdump -p /opt/apps/roboticsservice/RobotDemoQt | grep Qt_6
+
+# Check which libs are missing (with correct LD path)
+LD_LIBRARY_PATH=/opt/apps/roboticsservice:/opt/apps/roboticsservice/lib:/opt/apps/roboticsservice/SDK/x64 \
+  ldd /opt/apps/roboticsservice/RobotDemoQt | grep "not found"
+
+# Check which Qt version is bundled
+strings /opt/apps/roboticsservice/lib/libQt6Core.so.6 | grep "^6\." | head -3
+
+# Check system Qt version
+dpkg -l libqt6core6 | tail -1
+```
+
+Expected healthy output from the `ldd` check: **(no output / empty)** — all libs resolved.
+
+---
+
+
 
 If the PC Service fails to connect to your Meta Quest 3 device on Ubuntu 22.04 (while it works on Windows), follow these troubleshooting steps:
 
